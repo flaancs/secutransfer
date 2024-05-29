@@ -1,5 +1,5 @@
-import { UploadForm } from "@/components/upload-form";
+import { ShareForm } from "@/components/share-form";
 
 export default function Page() {
-  return <UploadForm />;
+  return <ShareForm />;
 }
