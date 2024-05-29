@@ -10,7 +10,7 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push --skip-generate",
     "db:studio": "prisma studio",
-    "postinstall": "prims generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
