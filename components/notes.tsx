@@ -21,7 +21,11 @@ export const Notes: React.FC = () => {
     async (id: string | null) => {
       if (id) {
         try {
-          const response = await axios.get(`/api/notes?id=${id}`);
+          const response = await axios.get(`/api/notes?id=${id}`, {
+            headers: {
+              "Api-Key": process.env.NEXT_PUBLIC_API_KEY,
+            },
+          });
           setNoteContent(response.data.content);
         } catch (error: any) {
           toast({

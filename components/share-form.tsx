@@ -69,11 +69,19 @@ export function ShareForm() {
     expiresAt,
   }) => {
     try {
-      const shareUrl = await axios.post("/api/notes", {
-        content,
-        oneTime,
-        expiresAt,
-      });
+      const shareUrl = await axios.post(
+        "/api/notes",
+        {
+          content,
+          oneTime,
+          expiresAt,
+        },
+        {
+          headers: {
+            "Api-Key": process.env.NEXT_PUBLIC_API_KEY,
+          },
+        }
+      );
       form.reset();
       setCreatedNoteUrl(shareUrl.data);
       setSuccessDialogOpen(true);

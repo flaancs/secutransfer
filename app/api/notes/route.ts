@@ -1,5 +1,6 @@
 import { prisma } from "@/prisma/client";
 import crypto from "crypto";
+import { headers } from "next/headers";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,13 @@ function decrypt(text: string): string {
 }
 
 export async function POST(request: Request) {
+  const headersList = headers();
+  const apiKey = headersList.get("Api-Key");
+
+  if (apiKey !== process.env.NEXT_PUBLIC_API_KEY) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
   const formData: {
     content: string;
     oneTime?: boolean;
@@ -70,6 +78,13 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
+  const headersList = headers();
+  const apiKey = headersList.get("Api-Key");
+
+  if (apiKey !== process.env.NEXT_PUBLIC_API_KEY) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 
