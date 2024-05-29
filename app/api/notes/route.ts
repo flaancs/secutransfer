@@ -1,6 +1,8 @@
 import { prisma } from "@/prisma/client";
 import crypto from "crypto";
 
+export const dynamic = "force-dynamic";
+
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY as string;
 const IV_LENGTH = 16;
 
